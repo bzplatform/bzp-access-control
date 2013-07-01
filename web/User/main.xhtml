@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <body>
+      <ui:composition template="../template/base.xhtml">
+         <ui:define name="title">
+            Access Control: Users
+         </ui:define>
+         <ui:define name="view">
+            <f:view>
+               <h:form id="form">
+                  <ui:include src="../template/header.xhtml">
+                     <ui:param name="page" value="User/main"/>
+                  </ui:include>
+                  #{jsf._do(var.User.userListSearch.clear()).stay()}
+                  #{var.User.status._ == null ? var.User.status._('ACTIVE') : null}
+                  #{var.User.status._ == 'ACTIVE' ? var.User.userListSearch.put('active', true) : null}
+                  #{var.User.status._ == 'INACTIVE' ? var.User.userListSearch.put('active', false) : null}
+                  #{jsf._do(var.User.userList.tableConfig.action._ == null ? var.User.userList.tableConfig.action._(true) : null).stay()}
+                  #{jsf._do(var.User.userList.role._ != null ? var.User.userListSearch.put('_:role MEMBER OF u.roleList', var.User.userList.role._) : null).stay()}
+                  #{jsf._do(var.User.userList._(jsf.search('User', 'u.name', var.User.userListSearch))).stay()}
+                  #{empty var.User.roleList._ ? jsf._do(var.User.roleList._(jsf.search('Role', 'r.name', jsf.newMap()))).stay() : null}
+                  <div class="container">
+                     <div class="table-header">
+                        <h4>Users</h4>
+                        <div class="box-icons dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="menu">
+                              <i class="icon-cog"></i>
+                           </a>
+                           <ul class="dropdown-menu">
+                              <li class="dropdown-menu-header">
+                                 <h4>Show/Hide Columns</h4>
+                              </li>
+                              <li>
+                                 #{var.User.userList.tableConfig.roles._ == null ? var.User.userList.tableConfig.roles._(true) : null}
+                                 <h:selectBooleanCheckbox value="#{var.User.userList.tableConfig.roles._}"/>
+                                 <label>Roles</label>
+                              </li>
+                              <li>
+                                 <h:selectBooleanCheckbox value="#{var.User.userList.tableConfig.login._}"/>
+                                 <label>Login</label>
+                              </li>
+                              <li>
+                                 <h:selectBooleanCheckbox value="#{var.User.userList.tableConfig.remoteIp._}"/>
+                                 <label>Remote IP</label>
+                              </li>
+                              <li>
+                                 <h:selectBooleanCheckbox value="#{var.User.userList.tableConfig.action._}"/>
+                                 <label>Action</label>
+                              </li>
+                              <li class="dropdown-menu-footer text-right">
+                                 <h:commandLink action="#{jsf.stay}" value="Apply" class="btn btn-small">
+                                    <f:ajax execute="@form" render="@form" onevent="restoreHandler"/>
+                                 </h:commandLink>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="hide custom-header">
+                        <h:commandButton action="#{jsf._do(var.modal._('../User/new.xhtml'))._do(var.User.form.user._(jsf.newObject('org.semanticprogrammer.app.accesscontrol.entity.User'))).stay}" value="Add..." 
+                                         class="btn"/>
+                        <label>
+                           Role
+                           <h:selectOneMenu value="#{var.User.userList.role._}">
+                              <f:selectItem itemValue="" itemLabel="ALL"/>
+                              <f:selectItems value="#{var.User.roleList._}" var="item" itemValue="#{item}" itemLabel="#{item.name}"/>
+                              <f:converter converterId="EntityConverter"/>
+                              <f:ajax render="@form" onevent="restoreHandler"/>
+                           </h:selectOneMenu>
+                        </label>
+                        <label>
+                           View
+                           <h:selectOneMenu value="#{var.User.status._}" class="input-small">
+                              <f:selectItem itemValue="ALL" itemLabel="ALL"/>
+                              <f:selectItem itemValue="ACTIVE" itemLabel="Active"/>
+                              <f:selectItem itemValue="INACTIVE" itemLabel="Inactive"/>                    
+                              <f:ajax execute="@form" render="@form" onevent="restoreHandler"/>
+                           </h:selectOneMenu>
+                        </label>
+                     </div>
+                     <ui:include src="template/table.xhtml">
+                        <ui:param name="userList" value="#{var.User.userList._}"/>
+                        <ui:param name="tableConfig" value="#{var.User.userList.tableConfig}"/>
+                     </ui:include>
+                  </div>
+                  <ui:include src="#{var.modal._}" rendered="#{var.modal._ != null}"/>
+               </h:form>
+            </f:view>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

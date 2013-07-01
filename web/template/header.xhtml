@@ -1,0 +1,34 @@
+<div xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" class="navbar navbar-fixed-top">
+   <div class="navbar-inner">
+      <div class="container">
+         <a class="brand" href="#">#{empty persistenceContext ? 'ACCESS-CONTROL' : persistenceContext.replaceFirst('persistence/', '').toUpperCase()}</a>
+         <ui:fragment rendered="#{page != null}">
+            <ul class="nav">
+               <li class="#{page == 'User/main' ? 'active' : ''}">
+                  <h:commandLink action="#{jsf._to('User/main').go}" value="USERS"/>
+               </li>
+               <li class="#{page == 'Role/main' ? 'active' : ''}">
+                  <h:commandLink action="#{jsf._to('Role/main').go}" value="ROLES"/>
+               </li>
+               <li class="#{page == 'Policy/main' ? 'active' : ''}">
+                  <h:commandLink action="#{jsf._to('Policy/main').go}" value="POLICY"/>
+               </li>
+            </ul>
+            <ul class="nav pull-right">
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" role="menu" href="#">
+                     <i class="icon-user"></i>
+                     #{access.user.name}
+                     <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li>
+                        <h:commandLink action="#{access.doorAction}" value="#{access.user == null ? '' : 'Logout'}" tabindex="-1"/>
+                     </li>
+                  </ul>
+               </li>
+            </ul>            
+         </ui:fragment>
+      </div>
+   </div>
+</div>

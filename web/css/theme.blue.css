@@ -1,0 +1,147 @@
+.navbar-inner {
+   background-image: linear-gradient(to bottom, #03699c, #2b89b8);
+   border: 1px solid #d4d4d4;
+}
+
+.navbar .brand {
+   color: #f2f5f7;
+   text-shadow: none;
+}
+
+.navbar-text {
+   color: #f2f5f7;
+}
+
+.navbar .nav > li > a {
+   color: #f2f5f7;
+   text-shadow: none;
+}
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+   color: #FFFFFF;
+   background-color: transparent;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+   color: #f2f5f7;
+   background-color: #035680;
+}
+
+
+.navbar-inner .icon-user  {
+   background-image: url("../img/glyphicons-halflings-white.png");
+}
+
+.navbar-inner .caret {
+   border-top: 4px solid #FFFFFF !important;
+} 
+
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+   color: #f2f5f7;
+   background-color: #035680;
+}
+
+.form hr {
+   border-top: 1px solid #b7c0c5;
+}
+
+.form {
+   background: #f7f9fa;
+   border: 1px solid #b7c0c5;
+}
+
+.form-header {
+   background: linear-gradient(to bottom, #c8d1d7 0%, #e0e5e9 100%) repeat scroll 0 0 transparent;
+   border-bottom: 1px solid #b7c0c5;
+}
+
+.form-footer {
+   background: #e6e9eb;
+   border-top: 1px solid #b7c0c5;
+}
+
+.form-header h4, .modal-header h4 {
+   color: #03699c;
+   text-shadow: 0 1px 0 #ffffff;
+}
+
+.modal-header {
+   background: linear-gradient(to bottom, #c8d1d7 0%, #e0e5e9 100%) repeat scroll 0 0 transparent;
+   border-bottom: 1px solid #b7c0c5;   
+}
+
+.table-header {
+   background: linear-gradient(to bottom, #c8d1d7 0%, #e0e5e9 100%) repeat scroll 0 0 transparent;
+   border: 1px solid #b7c0c5;
+   color: #035680;
+   text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+   background-color: #f2f5f7;
+}
+
+.table-bordered {
+   border: 1px solid #b7c0c5;
+   border-collapse: separate;
+   border-left: 0;
+}
+
+.table-bordered th, .table-bordered td {
+   border-left: 1px solid #b7c0c5;
+}
+.table th, .table td {
+   border-top: 1px solid #b7c0c5;
+}
+
+.dt-header, .dt-footer {
+   border-right-color: #b7c0c5;
+   border-bottom-color :#b7c0c5;
+   border-left-color: #b7c0c5;
+   background-color: #f7f9fa;
+}
+
+.dt-footer {
+   background-image: none;
+   background-color: #e6e9eb;
+}
+
+.dropdown-menu {
+    background-color: #f7f9fa;
+}
+
+.dropdown-menu-header {
+   background: #e6e9eb;
+}
+
+.dropdown-menu-header h4 {
+   color: #03699c;
+   text-shadow: 0 1px 0 #ffffff;
+}
+
+.dropdown-menu-footer {
+   background: #e6e9eb;
+   border-top: 1px solid #b7c0c5;
+}
+
+.dropdown-menu > li > label {
+   color: #000000;
+}
+
+.close {
+   color: #000000;
+   opacity: 0.4;
+   text-shadow: 0 1px 0 #FFFFFF;
+}
+
+
+.alertify-buttons {
+   background: #e6e9eb;
+   border-top: 1px solid #b7c0c5;
+   box-shadow: 0 1px 0 #FFFFFF inset;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <body>
+      <ui:composition template="../template/base.xhtml">
+         <ui:define name="title">
+            Access Control: Roles
+         </ui:define>
+         <ui:define name="view">
+            <f:view>
+               <h:form id="form">
+                  <ui:include src="../template/header.xhtml">
+                     <ui:param name="page" value="Role/main"/>
+                  </ui:include>
+                  #{jsf._do(var.Role.roleList._(jsf.search('Role', 'r.name', var.Role.roleListSearch))).stay()}
+                  <div class="container">
+                     <div class="table-header">
+                        <h4>Roles</h4>
+                     </div>
+                     <div class="hide custom-header">
+                        <h:commandButton action="#{jsf._do(var.modal._('../Role/new.xhtml'))._do(var.Role.form.role._(jsf.newObject('org.semanticprogrammer.app.accesscontrol.entity.Role'))).stay}" value="Add..." 
+                                         class="btn"/>
+                     </div>
+                     <ui:include src="template/table.xhtml">
+                        <ui:param name="roleList" value="#{var.Role.roleList._}"/>
+                     </ui:include>
+                  </div>
+                  <ui:include src="#{var.modal._}" rendered="#{var.modal._ != null}"/>
+               </h:form>
+            </f:view>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

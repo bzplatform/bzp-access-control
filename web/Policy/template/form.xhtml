@@ -1,0 +1,44 @@
+<h:panelGroup id="modal" xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core" rendered="#{!empty var.Policy.form}">
+   <div class="row-fluid">
+      <div class="span4">
+         <label>Application:</label>
+         <h:inputText value="#{var.Policy.form.policy._.application}" class="span12"/>
+         <h:panelGroup rendered="#{var.Policy.form.policyValidationMap._ != null and var.Policy.form.policyValidationMap._.application}" class="alert alert-error">
+            <b>Application Name</b> is required
+         </h:panelGroup>
+      </div>
+      <div class="span5">
+         #{empty var.Policy.form.roleList._ ? jsf._do(var.Policy.form.roleList._(jsf.search('Role', 'r.name', jsf.newMap()))).stay() : null}
+         <label>Role:</label>
+         <h:selectOneMenu value="#{var.Policy.form.policy._.role}" class="span12">
+            <f:selectItem itemValue="#{null}" itemLabel="NONE"/>
+            <f:selectItems value="#{var.Policy.form.roleList._}" var="item" itemValue="#{item}" itemLabel="#{item.name}"/>
+            <f:converter converterId="EntityConverter"/>
+         </h:selectOneMenu>
+         <h:panelGroup rendered="#{var.Policy.form.policyValidationMap._ != null and var.Policy.form.policyValidationMap._.role}" class="alert alert-error">
+            <b>Role</b> is required
+         </h:panelGroup>
+      </div>
+      <div class="span3">
+         <label>Effect:</label>
+         <h:selectOneMenu value="#{var.Policy.form.policy._.effect}" class="span12">
+            <f:selectItem itemValue="#{null}" itemLabel="NONE"/>
+            <f:selectItem itemValue="PERMIT" itemLabel="PERMIT"/>
+            <f:selectItem itemValue="DENIED" itemLabel="DENIED"/>
+         </h:selectOneMenu>
+         <h:panelGroup rendered="#{var.Policy.form.policyValidationMap._ != null and var.Policy.form.policyValidationMap._.effect}" class="alert alert-error">
+            <b>Effect</b> is required
+         </h:panelGroup>
+      </div>
+   </div>
+   <div class="row-fluid">
+      <label>Expression:</label>
+      <h:inputText value="#{var.Policy.form.policy._.uriExpression}" class="span12"/>
+      <h:panelGroup rendered="#{var.Policy.form.policyValidationMap._ != null and var.Policy.form.policyValidationMap._.expression}" class="alert alert-error">
+         <b>Expression</b> is required
+      </h:panelGroup>         
+   </div>
+</h:panelGroup>

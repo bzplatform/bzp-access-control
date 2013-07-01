@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <h:head>
+      <title><ui:insert name="title">Access Control</ui:insert></title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8"/>
+      <link href="/#{access.application}/css/bootstrap.css" rel="stylesheet"/>
+      <link href="/#{access.application}/css/alertify.core.css" rel="stylesheet"/>
+      <link href="/#{access.application}/css/alertify.bootstrap.css" rel="stylesheet"/>
+      <link href="/#{access.application}/css/main.css" rel="stylesheet"/>
+      <link href="/#{access.application}/css/app.css" rel="stylesheet"/>
+      <link href="/#{access.application}/css/theme.blue.css" rel="stylesheet"/>
+   </h:head>
+   <body style="padding-top: 60px;">
+      <ui:insert name="view"></ui:insert>
+      <script src="/#{access.application}/js/jquery-1.9.1.min.js"></script>
+      <script src="/#{access.application}/js/bootstrap.min.js"></script>
+      <script src="/#{access.application}/js/jquery.dataTables.min.js"></script>
+      <script src="/#{access.application}/js/app.js"></script>
+      <script src="/#{access.application}/js/alertify.min.js"></script>
+      <ui:insert name="tail"></ui:insert>
+   </body>
+</html>

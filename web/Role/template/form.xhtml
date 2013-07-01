@@ -1,0 +1,18 @@
+<h:panelGroup id="modal" xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core" rendered="#{!empty var.Role.form}">
+   <div class="row-fluid">
+      <div class="span2">
+         <label>ID</label>
+         <h:inputText value="#{var.Role.form.role._.id}" disabled="true" class="span12"/>
+      </div>
+      <div class="span10">
+         <label>Name</label>
+         <h:inputText value="#{var.Role.form.role._.name}" title="Name" class="span12"/>
+         <h:panelGroup styleClass="alert alert-error" rendered="#{var.Role.form.roleValidationMap._ != null and var.Role.form.roleValidationMap._.name}">
+            <b>Name</b> is required
+         </h:panelGroup>
+      </div>
+   </div>
+</h:panelGroup>

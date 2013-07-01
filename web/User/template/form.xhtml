@@ -1,0 +1,127 @@
+<h:panelGroup id="modal" xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core" rendered="#{!empty var.User.form}">
+   <div class="row-fluid">
+      <div class="span2">
+         <label>ID</label>
+         <h:inputText value="#{var.User.form.user._.id}" disabled="true" class="span12"/>
+      </div>
+      <div class="span8">
+         <label>Name</label>
+         <h:inputText value="#{var.User.form.user._.name}" title="Name" class="span12"/>
+         <h:panelGroup styleClass="alert alert-error" rendered="#{var.User.form.userValidationMap._ != null and var.User.form.userValidationMap._.name}">
+            <b>Name</b> is required
+         </h:panelGroup>
+         <h:panelGroup styleClass="alert alert-error" rendered="#{var.User.form.userValidationMap._ != null and var.User.form.userValidationMap._.duplicate}">
+            User with this name already exists 
+         </h:panelGroup>
+      </div>
+      <div class="span2">
+         <br/>
+         <label class="checkbox">
+            <h:selectBooleanCheckbox value="#{var.User.form.user._.active}"/>
+            Active
+         </label>
+      </div>
+   </div>
+   <div class="row-fluid">
+      <div class="span4">
+         <label>Login Name</label>
+         <h:inputText value="#{var.User.form.user._.login.name}" title="minimum 2 characters" class="span12"/>
+         <h:panelGroup styleClass="alert alert-error" rendered="#{var.User.form.userValidationMap._ != null and var.User.form.userValidationMap._.minLogin}">
+            <b>Login</b> must be at least 2 characters
+         </h:panelGroup>
+      </div>
+      <div class="span4">
+         <label>Password</label>
+         <h:inputText value="#{var.User.form.user._.login.password}" title="minimum 3 characters" class="span12"/>
+         <h:panelGroup styleClass="alert alert-error" rendered="#{var.User.form.userValidationMap._ != null and var.User.form.userValidationMap._.minPassword}">
+            <b>Password</b> must be at least 3 characters
+         </h:panelGroup>
+      </div>
+      <div class="span4">
+         <label>Remote IP</label>
+         <h:inputText value="#{var.User.form.user._.remoteIp}" class="span12"/>
+      </div>
+   </div>
+   <hr/>
+   <div class="row-fluid">
+      <div class="span6 form-inline">
+         <label>Roles</label><br/>
+         #{empty var.User.form.roleList._ ? jsf._do(var.User.form.roleList._(jsf.search('Role', 'r.name', jsf.newMap()))).stay() : null}
+         <h:selectOneMenu value="#{var.User.form.role._}" class="span9">
+            <f:selectItem itemValue="" itemLabel="NONE"/>
+            <f:selectItems value="#{var.User.form.roleList._}" var="role" itemValue="#{role}" itemLabel="#{role.name}"/>
+            <f:converter converterId="EntityConverter"/>
+         </h:selectOneMenu>
+         <h:commandButton class="span3 btn" action="#{jsf._do(var.User.form.role._ != null ? var.User.form.user._.roleList.add(var.User.form.role._) : null).stay}" value="Add">
+            <f:ajax execute="@form" render=":form:modal"/>
+         </h:commandButton>
+      </div>
+      <div class="span6">
+         <h:dataTable id="rowList" value="#{var.User.form.user._.roleList}" var="role" rendered="#{!empty var.User.form.user._.roleList}" class="table table-bordered table-condensed span12">
+            <h:column headerClass="span2">
+               <f:facet name="header">
+                  <h:outputText value="ID"/>
+               </f:facet>
+               #{role.id}
+            </h:column>
+            <h:column headerClass="span8">
+               <f:facet name="header">
+                  <h:outputText value="Name"/>
+               </f:facet>
+               #{role.name}
+            </h:column>
+            <h:column headerClass="span2">
+               <f:facet name="header">
+                  <h:outputText value="Action"/>
+               </f:facet>
+               <h:commandButton action="#{jsf._do(jsf.removeObj(var.User.form.user._.roleList, role)).stay}"
+                                class="btn btn-small"
+                                value="Delete">
+                  <f:ajax execute="@form" render=":form:modal"/>
+               </h:commandButton>
+            </h:column>
+         </h:dataTable>
+      </div>
+   </div>
+   <hr/>
+   <div class="row-fluid">
+      <div class="span6 form-inline">
+         <label>Remote Roles</label><br/>
+         <h:selectOneMenu value="#{var.User.form.remoteRole._}" class="span9">
+            <f:selectItem itemValue="" itemLabel="NONE"/>
+            <f:selectItems value="#{var.User.form.roleList._}" var="role" itemValue="#{role}" itemLabel="#{role.name}"/>
+            <f:converter converterId="EntityConverter"/>
+         </h:selectOneMenu>
+         <h:commandButton action="#{jsf._do(var.User.form.remoteRole._ != null ? var.User.form.user._.remoteRoleList.add(var.User.form.remoteRole._) : null).stay}" value="Add" class="span3 btn">
+            <f:ajax execute="@form" render=":form:modal"/>
+         </h:commandButton>
+      </div>
+      <div class="span6">
+         <h:dataTable id="remoteRoleList" value="#{var.User.form.user._.remoteRoleList}" var="remoteRole" rendered="#{!empty var.User.form.user._.remoteRoleList}" class="table table-bordered table-condensed">
+            <h:column headerClass="span2">
+               <f:facet name="header">
+                  <h:outputText value="ID"/>
+               </f:facet>
+               #{remoteRole.id}
+            </h:column>
+            <h:column headerClass="span8">
+               <f:facet name="header">
+                  <h:outputText value="Name"/>
+               </f:facet>
+               #{remoteRole.name}
+            </h:column>
+            <h:column headerClass="span2">
+               <f:facet name="header">
+                  <h:outputText value="Action"/>
+               </f:facet>
+               <h:commandButton action="#{jsf._do(jsf.removeObj(var.User.form.user._.remoteRoleList, remoteRole)).stay}" value="Delete" class="btn btn-small">
+                  <f:ajax execute="@form" render=":form:modal"/>
+               </h:commandButton>
+            </h:column>
+         </h:dataTable>
+      </div>
+   </div>
+</h:panelGroup>

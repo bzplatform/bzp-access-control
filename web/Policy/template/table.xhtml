@@ -1,0 +1,61 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core">
+   <h:dataTable value="#{policyList}" var="policy" class="table table-striped table-bordered data-table #{empty policyList ? 'table-empty' : ''}">
+      <h:column rendered="#{tableConfig.id._}" headerClass="span1">
+         <f:facet name="header">
+            <h:outputText value="ID"/>
+         </f:facet>
+         <h:outputText value="#{policy.id}"/>
+      </h:column>
+      <h:column headerClass="span2">
+         <f:facet name="header">
+            <h:outputText value="Application"/>
+         </f:facet>
+         <h:outputText value="#{policy.application}" style="white-space:nowrap;"/>
+      </h:column>
+      <h:column>
+         <f:facet name="header">
+            <h:outputText value="Expression"/>
+         </f:facet>
+         <h:outputText value="#{policy.uriExpression}"/>
+      </h:column>
+      <h:column>
+         <f:facet name="header">
+            <h:outputText value="Effect"/>
+         </f:facet>
+         <h:outputText value="#{policy.effect}"/>
+      </h:column>
+      <h:column>
+         <f:facet name="header">
+            <h:outputText value="Role"/>
+         </f:facet>
+         <h:outputText value="#{policy.role.name}" style="white-space:nowrap;"/>
+      </h:column>
+      <h:column rendered="#{tableConfig.action._}">
+         <f:facet name="header">
+            <h:outputText value="Action"/>
+         </f:facet>
+         <nobr>
+         <h:commandButton action="#{jsf._do(var.modal._('../Policy/edit.xhtml'))._do(var.Policy.form.policy._(policy)).stay}" value="Edit..."
+                          class="btn btn-small">
+            <f:ajax execute="@form" render="@form" onevent="restoreHandler"/>
+         </h:commandButton>
+         <ui:fragment rendered="#{access.isUriPermitted('Policy/delete')}">
+            <input type="button" value="Delete" class="btn btn-small" onclick="var _this = this; alertify.confirm('Delete &quot;' + '#{policy.uriExpression}: #{policy.role.name}' + '&quot; Policy?', function(e) {
+                  if (e) {
+                     $(_this).next().click();
+                  } else {
+                     $(_this).blur();
+                  } 
+               });
+               return false;"/>               
+            <h:commandButton class="hide" action="#{jsf._delete(policy).stay}" value="Delete">
+               <f:ajax render="@form" onevent="restoreHandler"/>
+            </h:commandButton>
+         </ui:fragment>
+         </nobr>
+      </h:column>
+   </h:dataTable>
+</ui:fragment>

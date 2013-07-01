@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <body>
+      <ui:composition template="template/base.xhtml">
+         <ui:define name="title">
+            Access Control: Denied
+         </ui:define>
+         <ui:define name="view">
+            <f:view>
+               <h:form prependId="false">
+                  <ui:include src="template/header.xhtml"/>
+                  <div class="form form-login">
+                     <header class="form-header">
+                        <h4 class="text-center">Insufficient Permissions!</h4>
+                     </header>
+                     <div class="form-body">
+                        <label>Permission to uri "#{requiredAction}" denied for the #{access.user.name == null ? 'Public' : access.user.name}</label>
+                     </div>
+                     <footer class="form-footer">
+                        <h:commandButton action="#{access.doorAction}" value="Return" class="btn btn-info pull-right"/>
+                     </footer>
+                  </div>
+               </h:form>
+            </f:view>
+         </ui:define>
+      </ui:composition>          
+   </body>
+</html>

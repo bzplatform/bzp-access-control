@@ -1,0 +1,26 @@
+<ui:fragment rendered="#{! empty var.Policy.form}" 
+             xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core">
+   <div class="form modal fade">
+               #{jsf._do(var.Policy.policyList.application._ != null ? var.Policy.form.policy._.setApplication(var.Policy.policyList.application._) : null).stay()}
+<!--               #{jsf._do(var.Policy.policyList.role._ != null ? var.Policy.form.policy._.setRole(var.Policy.policyList.role._) : null).stay()}-->
+      <header class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+         <h4>Create Policy</h4>
+      </header>
+      <div class="modal-body">
+         <ui:include src="template/form.xhtml"/>
+      </div>
+      <footer class="form-footer">
+         <div class="pull-right">
+            <h:commandButton action="#{jsf._do(var.Policy.form.policyValidationMap._(biz.policyValidationMap(var.Policy.form.policy._))).
+                                       go(empty var.Policy.form.policyValidationMap._ ?
+                                       jsf._save(var.Policy.form.policy._).
+                                       _do(var.Policy.form.$)._do(var.modal._(null)).stay() : jsf.stay())}" value="OK" class="btn btn-info"/>
+            <h:commandButton action="#{jsf._do(var.Policy.form.$)._do(var.modal._(null)).stay}" value="Cancel" immediate="true" class="btn"/>
+         </div>
+      </footer>
+   </div>
+</ui:fragment>
