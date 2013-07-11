@@ -3,7 +3,7 @@ package accesscontrol;
 import accesscontrol.entity.Policy;
 import accesscontrol.entity.Role;
 import accesscontrol.entity.User;
-import com.medenterprise.jsftoolkit.ejb.CrudService;
+import jsftoolkit.ejb.CrudService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

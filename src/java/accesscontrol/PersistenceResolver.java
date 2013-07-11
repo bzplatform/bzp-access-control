@@ -1,7 +1,7 @@
 package accesscontrol;
 
-import com.medenterprise.jsftoolkit.ejb.PersistenceResolverApi;
-import com.medenterprise.jsftoolkit.util.FacesUtils;
+import jsftoolkit.ejb.PersistenceResolverApi;
+import jsftoolkit.util.FacesUtils;
 import javax.ejb.Singleton;
 
 @Singleton

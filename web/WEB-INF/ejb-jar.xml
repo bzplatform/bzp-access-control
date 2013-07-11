@@ -7,15 +7,15 @@
       <session>
          <ejb-name>CrudService</ejb-name>
          <persistence-context-ref>
-            <persistence-context-ref-name>persistence/medoffice</persistence-context-ref-name>
-            <persistence-unit-name>medoffice</persistence-unit-name>
+            <persistence-context-ref-name>persistence/access-control</persistence-context-ref-name>
+            <persistence-unit-name>access-control</persistence-unit-name>
          </persistence-context-ref>
       </session>
       <session>
          <ejb-name>AuthenticationService</ejb-name>
          <persistence-context-ref>
-            <persistence-context-ref-name>persistence/medoffice</persistence-context-ref-name>
-            <persistence-unit-name>medoffice</persistence-unit-name>
+            <persistence-context-ref-name>persistence/access-control</persistence-context-ref-name>
+            <persistence-unit-name>access-control</persistence-unit-name>
          </persistence-context-ref>
       </session>
    </enterprise-beans>

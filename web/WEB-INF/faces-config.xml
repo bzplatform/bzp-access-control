@@ -5,13 +5,13 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
    <application>
       <navigation-handler>
-         com.medenterprise.jsftoolkit.navigation.Dispatcher
+         jsftoolkit.navigation.Dispatcher
       </navigation-handler>
    </application>
    <converter>
       <converter-id>EntityConverter</converter-id>
       <converter-class>
-         com.medenterprise.jsftoolkit.util.EntityConverter
+         jsftoolkit.util.EntityConverter
       </converter-class>
    </converter>
    <converter>
@@ -22,17 +22,17 @@
    </converter>
    <managed-bean>
       <managed-bean-name>jsf</managed-bean-name>
-      <managed-bean-class>com.medenterprise.jsftoolkit.controller.SessionController</managed-bean-class>
+      <managed-bean-class>jsftoolkit.controller.SessionController</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
    <managed-bean>
       <managed-bean-name>var</managed-bean-name>
-      <managed-bean-class>com.medenterprise.jsftoolkit.controller.VarMap</managed-bean-class>
+      <managed-bean-class>jsftoolkit.controller.VarMap</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
    <managed-bean>
       <managed-bean-name>access</managed-bean-name>
-      <managed-bean-class>com.medenterprise.jsftoolkit.controller.AccessController</managed-bean-class>
+      <managed-bean-class>jsftoolkit.controller.AccessController</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
    <navigation-rule>
@@ -48,6 +48,6 @@
       </navigation-case>
    </navigation-rule>
    <lifecycle>
-      <phase-listener>com.medenterprise.jsftoolkit.navigation.SecurityPhaseListener</phase-listener>
+      <phase-listener>jsftoolkit.navigation.SecurityPhaseListener</phase-listener>
    </lifecycle>
 </faces-config>
