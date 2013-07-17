@@ -32,7 +32,7 @@
    </context-param>
    <context-param>
       <param-name>com.medenterprise.APPLICATION</param-name>
-      <param-value>access-control</param-value>
+      <param-value>jns-access-control</param-value>
    </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
